@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="build_types">
+        <item>Gradle (Android)</item>
+        <item>Flutter</item>
+        <item>React Native</item>
+    </string-array>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_menu_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_my_projects"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="My Projects" />
+        <item
+            android:id="@+id/nav_terminal"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="Terminal" />
+        <item
+            android:id="@+id/nav_create_project"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Create Project" />
+        <item
+            android:id="@+id/nav_cloud_build"
+            android:icon="@android:drawable/ic_menu_upload"
+            android:title="Build APK" />
+        <item
+            android:id="@+id/nav_package_manager"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="Package Manager" />
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="About" />
+        </menu>
+    </item>
+</menu>

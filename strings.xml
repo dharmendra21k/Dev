@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mobile Developer Studio</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_terminal">Terminal</string>
+    <string name="menu_package_manager">Package Manager</string>
+    <string name="menu_project_manager">Projects</string>
+    <string name="menu_apk_builder">Build APK</string>
+    <string name="menu_code_editor">Code Editor</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_help">Help</string>
+</resources>

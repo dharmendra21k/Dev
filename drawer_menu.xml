@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_projects"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/nav_projects" />
+        <item
+            android:id="@+id/nav_terminal"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/nav_terminal" />
+    </group>
+
+    <item android:title="@string/nav_group_development">
+        <menu>
+            <item
+                android:id="@+id/nav_create_project"
+                android:icon="@android:drawable/ic_menu_add"
+                android:title="@string/nav_create_project" />
+            <item
+                android:id="@+id/nav_cloud_build"
+                android:icon="@android:drawable/ic_menu_upload"
+                android:title="@string/nav_cloud_build" />
+            <item
+                android:id="@+id/nav_package_manager"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="@string/nav_package_manager" />
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_group_app">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="@string/nav_settings" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="@string/nav_about" />
+        </menu>
+    </item>
+
+</menu>

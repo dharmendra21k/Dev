@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/black">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorOnPrimary" />
+
+    <TextView
+        android:id="@+id/text_terminal_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="/storage/emulated/0"
+        android:textColor="@android:color/white"
+        android:background="#333333"
+        android:typeface="monospace"
+        android:textSize="12sp" />
+
+    <com.mobiledev.androidstudio.terminal.TerminalView
+        android:id="@+id/terminal_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        style="@style/TerminalText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="#333333">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ "
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edit_terminal_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="16sp"
+            android:hint="@string/terminal_enter_command"
+            android:textColorHint="#888888"
+            android:imeOptions="actionGo"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+</LinearLayout>

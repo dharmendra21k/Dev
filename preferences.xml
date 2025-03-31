@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Appearance"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:defaultValue="system"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"
+            android:key="theme"
+            android:title="@string/settings_theme"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="medium"
+            android:entries="@array/font_size_entries"
+            android:entryValues="@array/font_size_values"
+            android:key="font_size"
+            android:title="@string/settings_font_size"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_performance"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="cloud_compile"
+            android:summary="@string/settings_cloud_compile_summary"
+            android:title="@string/settings_cloud_compile"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Storage"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="storage_path"
+            android:title="@string/settings_storage_path"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_preinstalled_packages"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="installed_packages"
+            android:title="Manage Pre-installed Packages"
+            android:summary="View and manage programming languages and tools"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

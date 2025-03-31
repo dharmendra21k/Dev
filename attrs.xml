@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CodeEditorView">
+        <attr name="syntaxHighlightingEnabled" format="boolean" />
+        <attr name="fileType" format="string" />
+    </declare-styleable>
+</resources>

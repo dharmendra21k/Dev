@@ -1,0 +1,212 @@
+// MainActivity.java
+package {{package_name}};
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private ItemAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        
+        // Create sample data
+        List<Item> items = createSampleData();
+        
+        // Set up adapter
+        adapter = new ItemAdapter(items);
+        recyclerView.setAdapter(adapter);
+    }
+    
+    private List<Item> createSampleData() {
+        List<Item> items = new ArrayList<>();
+        for (int i = 1; i <= 20; i++) {
+            items.add(new Item("Item " + i, "Description for item " + i));
+        }
+        return items;
+    }
+    
+    // Item model class
+    static class Item {
+        private String title;
+        private String description;
+        
+        Item(String title, String description) {
+            this.title = title;
+            this.description = description;
+        }
+        
+        public String getTitle() {
+            return title;
+        }
+        
+        public String getDescription() {
+            return description;
+        }
+    }
+    
+    // RecyclerView adapter
+    class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
+        
+        private List<Item> items;
+        
+        ItemAdapter(List<Item> items) {
+            this.items = items;
+        }
+        
+        @NonNull
+        @Override
+        public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_layout, parent, false);
+            return new ItemViewHolder(view);
+        }
+        
+        @Override
+        public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+            Item item = items.get(position);
+            holder.titleTextView.setText(item.getTitle());
+            holder.descriptionTextView.setText(item.getDescription());
+        }
+        
+        @Override
+        public int getItemCount() {
+            return items.size();
+        }
+        
+        class ItemViewHolder extends RecyclerView.ViewHolder {
+            TextView titleTextView;
+            TextView descriptionTextView;
+            
+            ItemViewHolder(@NonNull View itemView) {
+                super(itemView);
+                titleTextView = itemView.findViewById(R.id.tvTitle);
+                descriptionTextView = itemView.findViewById(R.id.tvDescription);
+                
+                // Set up item click listener
+                itemView.setOnClickListener(v -> {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Item clickedItem = items.get(position);
+                        // Handle item click here
+                        // For example, you could show a Toast:
+                        // Toast.makeText(MainActivity.this, "Clicked: " + clickedItem.getTitle(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+    }
+}
+
+// activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+// item_layout.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            tools:text="Description" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+// AndroidManifest.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="{{package_name}}">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="{{app_name}}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+
+// strings.xml
+<resources>
+    <string name="app_name">{{app_name}}</string>
+</resources>
+
+// colors.xml
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+</resources>
