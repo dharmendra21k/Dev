@@ -1,201 +1,232 @@
-package com.mobiledev.androidstudio.model;
+package com.mobiledev.androidstudio.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Project model class
+ * Model class for Android projects
  */
-public class Project implements Parcelable {
-    
-    private String id;
+public class Project implements Serializable {
+
     private String name;
-    private String description;
+    private String packageName;
+    private String template;
     private String path;
-    private String type;
-    private Date lastModified;
-    
+    private long lastModified;
+    private Date createdDate;
+
     /**
-     * Constructor
-     * 
-     * @param id Project ID
+     * Create a new project
+     */
+    public Project() {
+        this.createdDate = new Date();
+    }
+
+    /**
+     * Create a new project with details
+     *
      * @param name Project name
-     * @param description Project description
-     * @param path Project file path
-     * @param type Project type (android, web, etc.)
+     * @param packageName Package name
+     * @param template Project template
+     * @param path Project path
      */
-    public Project(String id, String name, String description, String path, String type) {
-        this.id = id;
+    public Project(String name, String packageName, String template, String path) {
+        this();
         this.name = name;
-        this.description = description;
+        this.packageName = packageName;
+        this.template = template;
         this.path = path;
-        this.type = type;
-        this.lastModified = new Date();
+        this.lastModified = System.currentTimeMillis();
     }
-    
+
     /**
-     * Parcelable constructor
-     * 
-     * @param in Parcel
-     */
-    protected Project(Parcel in) {
-        id = in.readString();
-        name = in.readString();
-        description = in.readString();
-        path = in.readString();
-        type = in.readString();
-        lastModified = new Date(in.readLong());
-    }
-    
-    /**
-     * Parcelable creator
-     */
-    public static final Creator<Project> CREATOR = new Creator<Project>() {
-        @Override
-        public Project createFromParcel(Parcel in) {
-            return new Project(in);
-        }
-        
-        @Override
-        public Project[] newArray(int size) {
-            return new Project[size];
-        }
-    };
-    
-    /**
-     * Update last modified date
-     */
-    public void updateLastModified() {
-        this.lastModified = new Date();
-    }
-    
-    /**
-     * Get ID
-     * 
-     * @return ID
-     */
-    public String getId() {
-        return id;
-    }
-    
-    /**
-     * Set ID
-     * 
-     * @param id ID
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-    
-    /**
-     * Get name
-     * 
-     * @return Name
+     * Get the project name
+     *
+     * @return Project name
      */
     public String getName() {
         return name;
     }
-    
+
     /**
-     * Set name
-     * 
-     * @param name Name
+     * Set the project name
+     *
+     * @param name Project name
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
-     * Get description
-     * 
-     * @return Description
+     * Get the package name
+     *
+     * @return Package name
      */
-    public String getDescription() {
-        return description;
+    public String getPackageName() {
+        return packageName;
     }
-    
+
     /**
-     * Set description
-     * 
-     * @param description Description
+     * Set the package name
+     *
+     * @param packageName Package name
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
-    
+
     /**
-     * Get path
-     * 
-     * @return Path
+     * Get the project template
+     *
+     * @return Project template
+     */
+    public String getTemplate() {
+        return template;
+    }
+
+    /**
+     * Set the project template
+     *
+     * @param template Project template
+     */
+    public void setTemplate(String template) {
+        this.template = template;
+    }
+
+    /**
+     * Get the project path
+     *
+     * @return Project path
      */
     public String getPath() {
         return path;
     }
-    
+
     /**
-     * Set path
-     * 
-     * @param path Path
+     * Set the project path
+     *
+     * @param path Project path
      */
     public void setPath(String path) {
         this.path = path;
     }
-    
+
     /**
-     * Get type
-     * 
-     * @return Type
+     * Get the last modified timestamp
+     *
+     * @return Last modified timestamp
      */
-    public String getType() {
-        return type;
-    }
-    
-    /**
-     * Set type
-     * 
-     * @param type Type
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-    
-    /**
-     * Get last modified date
-     * 
-     * @return Last modified date
-     */
-    public Date getLastModified() {
+    public long getLastModified() {
         return lastModified;
     }
-    
+
     /**
-     * Set last modified date
-     * 
-     * @param lastModified Last modified date
+     * Set the last modified timestamp
+     *
+     * @param lastModified Last modified timestamp
      */
-    public void setLastModified(Date lastModified) {
+    public void setLastModified(long lastModified) {
         this.lastModified = lastModified;
     }
-    
-    @Override
-    public int describeContents() {
-        return 0;
+
+    /**
+     * Get the created date
+     *
+     * @return Created date
+     */
+    public Date getCreatedDate() {
+        return createdDate;
     }
-    
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(description);
-        dest.writeString(path);
-        dest.writeString(type);
-        dest.writeLong(lastModified.getTime());
+
+    /**
+     * Set the created date
+     *
+     * @param createdDate Created date
+     */
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
-    
+
+    /**
+     * Check if the project directory exists
+     *
+     * @return true if the project exists
+     */
+    public boolean exists() {
+        if (path == null) {
+            return false;
+        }
+        
+        File projectDir = new File(path);
+        return projectDir.exists() && projectDir.isDirectory();
+    }
+
+    /**
+     * Get project size in bytes
+     *
+     * @return Project size
+     */
+    public long getSize() {
+        if (!exists()) {
+            return 0;
+        }
+        
+        return calculateDirectorySize(new File(path));
+    }
+
+    /**
+     * Calculate directory size recursively
+     *
+     * @param directory Directory
+     * @return Total size
+     */
+    private long calculateDirectorySize(File directory) {
+        long size = 0;
+        
+        File[] files = directory.listFiles();
+        if (files == null) {
+            return 0;
+        }
+        
+        for (File file : files) {
+            if (file.isFile()) {
+                size += file.length();
+            } else if (file.isDirectory()) {
+                size += calculateDirectorySize(file);
+            }
+        }
+        
+        return size;
+    }
+
+    /**
+     * Update the last modified time
+     */
+    public void updateLastModified() {
+        this.lastModified = System.currentTimeMillis();
+    }
+
     @Override
-    public String toString() {
-        return name;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        Project other = (Project) obj;
+        
+        if (path != null) {
+            return path.equals(other.path);
+        }
+        
+        return other.path == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return path != null ? path.hashCode() : 0;
     }
 }
